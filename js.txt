@@ -1,0 +1,562 @@
+JavaScript
+
+JavaScript чувствителен к регистру. Объекты сравниваются по ссылке, а не по значению!
+
+
+#### Вызов ####
+   <script type="text/javascript" src="main.js">
+      ...
+   </script>
+
+    или
+
+    в <head> добавить <script src='filename.js'></script>
+
+#### Комментарий ####
+   // однострочный комментарий
+  
+   /* 
+      многострочный комментарий
+   */
+
+#### Числа ####
+  234 (десятичное)
+  0xCAF9(шестнадцатиричое)
+  0345(восьмиричное,цифры после нуля должны быть от 0 до 7, 
+            иначе будет считаться десятиричным числом)
+  1.47 (вещественное)
+   i++, ++i, i--, --i (инкременты и декременты)
+   parseInt('5.3')   (вернет 5)
+   parseFloat('5.3') (вернет 5.3)
+   Number('5.3')     (вернет 5.3)
+
+#### Строки ####
+   'hello'+'world'  (конкатенация)
+   2 + '2'  (вернет '22'(конкатенация), но '5' * 10 вернет 50 (арифм. действие))
+   String(5)   (вернет '5')
+
+#### Boolean (true, false) ####
+
+#### Операторы ####
+   +, -, *, /, %     (ариф.операции, % - остаток от деления)
+   >>, <<, >>>       (сдвиги, >>> - с заполнением нулями)
+   =   (присвоение)
+   ==  (равенство по значению)            5 == '5'  true 
+   === (равенство по значению и типу)     5 === '5' false
+   !=  (не равенство по значению)         5 != 5    false
+   !== (не равенство по значению и типу)  5 !==  5  true
+   > < (больше и меньше)
+   <=  (больше или равно) 
+   >=  (меньше или равно)
+   &  (порязрядное И)
+   ^  (исключающее ИЛИ)
+   |   (ИЛИ)
+   &&  (логическое И)    (возвращает последнее true или первое false)
+   ||  (логическое ИЛИ)  (если есть true возвращает первое true, иначе false)
+   !   (унарное НЕ)      (!true  вернет false) (!!5 вернет true)  
+   Boolean(5)   (вернет true)
+
+#### Undefined, null, NaN (not a number) ####
+
+#### Переменные ####
+   var num = 5; (объявление и присваивание)
+   var a = b = c = 10;  (множественное присваивание)
+   num += 5;   (короткая запись  num = num + 5, для всех арифм. действий)
+
+#### while ####
+   while (i > 0){
+    ...;
+   }
+
+#### do/while ####
+   do {
+      ...;
+   } while (++n < 100);
+
+#### for ####
+   for (var i = 0; i < 10; i++){
+    ...;
+    continue;    (прерывает текщую итерации и переходит к началу цикла)
+    break;       (прерывает весь цикл)
+   }
+
+  for (var a = 0, b = 0; a < 10, b < 10; a++, b++) {
+    ...;
+  }
+
+  s = "string"
+  for (var n in s) {
+      console.log(n);
+  }
+
+#### Условие ####
+   if ((i > 12) && (j > 40)){
+    ...;
+   }
+   else if ( j < 20){
+    ...;
+   }
+   else {
+    ...;
+   }
+
+   a = (b==1) ? 'one' : 'two';   (краткая форма)
+
+#### Ветвление ####
+   switch(n){
+     case 0: ...; break;        (оператор break обязателен, иначе после
+     case 244: ...; break;       верного вхождения выполнит
+     case 'abc': ...; break;     последующие инструкции )
+     default: ...;
+   }
+
+#### Метки, break и continue ####
+   label1 : for ( ... ) { 
+         ...; 
+         ... break label2; break - выход из цикла
+                           (если есть метка - переход на метку в конец инструкции)
+         ... continue; continue - запускает новую итерацию в цикле
+         ...;
+         }
+
+#### With ####
+   Временно изменяет цепочку областей видимости.
+   with (abc)
+      ...;
+
+#### Функция ####
+   function foo(arg1, ..., argN){
+     ...;
+     return ...;
+   }
+
+   var a = foo();          (результат функции в переменную)
+
+   var a = function(){};   (аннонимная функция)
+
+
+#### Функция-конструктор ####
+   function User(name, age){
+      this.name = name;   (свойство)
+      this.age  = age;
+      this.def = 'default';   (свойство по -умолчанию)
+      this.method = function() {       (метод)
+         ...;           
+      }
+   }
+
+   var a = new User('Maks', 30);    (a - экземпляр)
+   a.constructor;                   (вернет фнкцию-конструктор)
+
+#### Прототипированная модель наследования ####
+   У каждого объекта есть свойство prototype которое указывает на прототип (надстройку) этого объекта.
+   User.prototype;
+   User.prototype.newvar = 10;              (добавить в прототип новое значение)                     
+   User.prototype.method = function (){};   (добавление метода в функцию-конструктор через прототип!) 
+
+
+#### Объект ####
+   Объект - неупорядоченная коллекция именованных значений.
+   var user = {};                   (альтернатива var user = new Object();)
+   user.name = 'Name';       (свойство name)
+   user.age = 25;
+   user.action = function(){              (метод)
+                   ...;
+                 }
+
+   var user1 = {name:'Name',              (ключ(свойство):значение)
+                age:25,
+                action:function(){
+                  console.log(this.name); (this - сам объект)
+                }
+                };
+
+   user1[name] = 'Name1';                 (присваивание значение ключу(свойству))
+
+   if name in user1 {                     (проверка на вхождение)
+      ...;
+   }
+
+   delete user1.name;				      (удаление свойства)
+
+   for(var i in user1){                   (пройтись по свойствам)
+      ...;								
+   }
+
+   foo.call(obj, arg1, argN);    (вызов функции foo как метод объекта obj)
+   						         (функция foo ранее должна быть описана)
+   						         (arg1, argN - аргументы функции foo)
+
+
+#### Массив ####
+  var a = [];          (или var a = new Array();)
+  a[0] = 'abc';
+
+  for (x in a){...}
+
+  for (x < a.length){...}
+
+  str = a.join(':');        (в строку)
+  da = a.concat(b, c);      (массив a + массив b + массив c) 
+  sl = a.slice(2,5);        (срез от и до)
+  a.sort();                 (сортировка)
+  var x = a.pop();          (извлечение последнего элемента, вернет значение этого элемента)
+  var x = a.push(2,44);     (добавление элемента/ов в конец массива, вернет длину массива)
+  var x = a.shift();        (извлечение первого элемента, вернет значение этого элемента)
+  var x = a.unshift(2,44);  (добавление элемента/ов в начало массива, вернет длину массива)
+
+
+#### Date() - объект даты и времени  ####
+  var d = new Date();
+
+
+#### Объект RegExp ####
+#### Объект Error ####
+
+
+#### Исключения ####
+    try {
+       ...;                    (исключение системное или с помощью throw)
+       if (a > 0){
+          throw new Error("message");      (возбуждение исключения)
+       }
+    }
+    catch (e) {
+       ...;    (обработчик исключения, e-идентификатор исключения)
+       console.log(e.name);
+    }
+    finally {
+       ...;               (выполнится всегда)
+    }
+
+
+#### Обьектная модель браузера (BOM) ####
+window (глобальный объект)
+свойства
+.hystory
+.navigator
+.screen (отвечает за монитор пользователя)
+.location
+.document (методы --> .open(), .write(), .close())
+
+отобразить параметры свойства
+for (var x in navigator){
+console.log(x, ": ", navigator[x]);
+}
+
+методы
+.alert("message")
+var a = window.confirm("abc?") (возвращает 'true' или 'false')
+var b = window.prompt("abc?", "yes")
+var c = window.setTimeout("function ....", 1000)
+
+.open() (4 параметра -- 1.url 2.имя окна 3.строка параметров пр.width)
+.close()
+.blur()
+.focus()
+.opener() (ссылка на родительское окно)
+.closed() (true/false закрыто ли окно)
+
+
+
+#### DOM ####
+
+document.links    - ссылки
+document.images
+document.forms
+document.HTMLSelectElement
+document.HTMLOptionElement
+document.HTMLTableElement
+
+f = document.forms[0]  - форма в позиции
+f.elements             - элементы формы
+f.submit()             - метод формы отправить
+f.reset()              - сбросить форму
+f.elements[0]          - первый элемент
+f.elements[0].click()  - нажатие на элемент
+
+document.forms['name']   
+document.forms.name      - по имени
+
+
+Node - узел документа
+    Свойства
+       .parentNode
+       .childNodes
+       .firstChild
+       .lastChild
+       .nextSibling  - след. соседский узел 
+       .previousSibling  - пред. соседский узел
+       .ownerDocument
+       .nodeName
+       .nodeType  - тип узла (1 - узел элемента, 3 - текстовый узел (#text), 9 - узел документа)
+       .nodeValue - значение узла
+       .textContent - выбор всего текста на любом уровне
+    Методы
+       .hasChildNodes() - есть ли дочерние узлы
+       .cloneNode(bool) - true - копирует детей 
+       .appendChild(e)  - добавить
+       .insertBefore(e, p)
+       .replaceChild(e, p)
+       .removeChild(e)
+
+Element - элемент документа
+    Свойства
+       свойства Node
+       .tagName
+    Методы
+       методы Node
+       .getElementsByTagName("tag")
+       .hasAttribute("atr")
+       .getAttribute("atr")
+       .setAttribute("atr", "val")
+       .removeAttribute("atr")
+       .addEventListener('event',func,false)    - регистрация события 
+                       ('event' - событие без 'on', func - ссылка на функцию без скобок)
+       .removeEventListener('event', func)
+
+Document
+    Свойства
+       свойства Node
+       .documentElement   - выборка тега html
+       .body
+       .styleSheets
+       .doctype 
+    Методы
+       методы Node
+       .getElementsByTagName(e)
+       .getElementById("id")
+       .innerHTML = "" 
+       .createElement("el")
+       .createTextNode("text")
+       .createDocumentFragment()
+
+#### События ####
+
+примеры описания события
+-   <form ... onsubmit="func()">
+
+-   x.onclick = function() {}
+
+   onclick
+   onmousedown  (кнопка мыши нажата)
+   onmouseup    (кнопка мыши отпущена)
+   onmousemove  (курсор в движение)
+   onmouseover  (курсор над)
+   onmouseout   (курсор вне)
+
+  <document>, <body>, <input>, <textarea>
+   onkeydown    (клавиша нажата)
+   onkeypress   (нажали на клавишу и отпустили)
+   onkeyup      (клавиша отпущена)
+
+  <body>, <a>, <button>, <label>, <input>, <textarea>, <select>
+   onfocus      (в фокусе)
+   onblur       (не в фокусе)
+
+  <form>
+    onsubmit    (перед посылкой формы) ! onsubmit="return func()"
+    onreset     (перед сбросом формы)
+
+  <input>, <textarea>
+    onselect
+
+  <input>, <textarea>, <select>
+    onchange
+
+  <window>, <body>
+    onload      (window.onload = function;  - без скобок!!!)
+    onunload
+
+  <элементы с прокруткой>
+    onscroll
+
+  <window>
+    onerror
+    onresize
+
+  #### Свойства события ####
+     type
+     target
+     currentTarget  (элемент на котором сработал обработчик)
+    
+    мышь 
+     button  (какая кнопка нажата)
+     altKey, ctrlKey, shiftKey
+     clientX, clientY
+     offsetX, offsetY
+     screenX, screenY
+
+    клавиатура
+     keyCode
+
+      Пример демонстрирует использование объекта события:                     
+          <input type="button" value="Нажми меня" id="elem">
+          
+          <script>
+            elem.onclick = function(event) {
+              // вывести тип события, элемент и координаты клика
+              alert(event.type + " на " + event.currentTarget);
+              alert(event.clientX + ":" + event.clientY);
+            }
+          </script>
+
+   Получение ссылки на событие
+   function func(e){
+      e = e || event;
+   };
+
+
+  
+
+#### JQuery ####
+$(document).ready(function(){});     = window.onload   (выполнить после загрузки всей страницы)
+
+(function(){
+  ....
+})();
+
+$('div')
+$('#id')
+$('div#content')
+$('.class')
+$('ul li')
+$(obj)             обёртка для html объекта
+
+$('li:first-child')
+$('li:last-child')
+$('li:even')          каждый нечетный
+$('li:odd')           каждый четный
+
+$('').children('li')
+$('').children('li').eq(1)      выбрать воторого ребенка
+$('').find('li')                все дети во всех вложениях
+$('').children('li').next()
+$('').children('li').prev()
+$('').first().siblings()        соседи
+$('').parent()
+$('').parents()
+$('').closest('div')            ближайший из родителей из div
+$(''). ... .andSelf()           ... и сам
+$(''). ... .end(). ...          на контекст выше
+
+
+if ( $('li:first-child').is('.style') ) {
+   ...
+}                                           true если имеет класс .style
+
+... $('').is(':visible') ...             виден
+... $('').is(':hidden') ...              невиден
+... $('').is(':contains("string")') ...  содержит ли текст
+
+$('').filter('.class')                   отфильтровать по классу
+$('').not('.class')                      не содержащий класс
+$('').not(':has(a.class)')               вернет элементы неимеющие элемент 'a' с классом 'class'
+$('').has('p')                           элементы содержащие тег 'p'
+
+$('').text()             возвращает текст
+$('').text('some text')  устанавливает текст
+$('').html()             возвращает html код
+
+$('').hide()             прячем элемент
+$('').show()             показываем элемент
+
+$('').css()              отобразить(один аттрибут) или установить(два аттрибута) стиль css
+$('').css({
+  'color': 'green';
+  'font-size': '14px'
+}) 
+
+$('').addClass('style')
+$('').removeClass('style')
+$('').toggleClass('style')   добавить класс если его нет и удалить если есть
+
+$('form').attr('method', 'get')                 аттрибут
+$('input[type="text"]').val('some text')        значение
+$('select').val('5')                            выбор 5 опции
+
+$('input[type="text"]').each(                  пройтись по каждому элементу 
+   function(idx, el){                          выборки и выполнить к каждому 
+      console.log(idx, $(el).val());           функцию, idx-индекс el-элемент
+   })                                   
+
+$.each(obj,function(idx,val){})      глобальный .each
+
+$('').map(function(idx,val){})
+$.map(obj, function(val,idx){})     глобальный map
+
+$.grep(array, function(val, key){
+   return val > 10 ; 
+})  вернет новый массив  
+
+#### События ####
+$('button').on('click', function(){})
+
+$('button').on('click', function(){
+   console.log($(this));                 this - объект button  
+})
+
+!!!  
+$('button').on('click', function(){      при каждом нажатии
+  $('div').css({"font-size": "+=5"});      увеличить шрифт на 5
+})
+
+$('').off('click')         отменить событие
+
+$('button').toggle()       переключатель
+
+
+#### Animations ####
+$('').slideUp(2000)        плавное исчезновение 2мс
+$('').slideDown('slow')    плавное появление медленно, fast-быстро
+$('').slideToggle()
+
+$('').fadeOut()
+$('').fadeIn()
+$('').fadeToggle()
+
+$('').slideUp.delay(1000)  завержка 1мс
+
+#### .animate ####  
+1 вариант
+$('button').on('click', function(){        при каждом нажатии плавно 3мс
+  $('div').animate(                        увеличить шрифт на 5 
+    {"font-size": "+=5"}, 
+    3000, 
+    'linear',
+    function(){ console.log("...")});      после выполнить функцию
+})
+
+2 вариант
+$('button').on('click', function(){        при каждом нажатии плавно 3мс
+  $('div').animate(                        увеличить шрифт на 5 
+    {"font-size": "+=5"}, 
+    {duration: 3000, 
+    function(){ ... } })      после выполнить функцию
+})
+
+3 вариант
+ $('button').on('click', function(){        при каждом нажатии плавно 3мс
+  $('div')
+    .animate(                        увеличить шрифт на 5 
+     {"font-size": "+=5"}, 
+     {duration: 3000}
+    )
+    .animate(
+     {"top": "100"}, 
+     {duration: 3000, queue: true }        queue - очередь
+    )
+})
+
+
+$('').append('text')     добавить ребенка в конец
+$('').appendTo('p')      добавить в
+$('').prepend('text')    в начало
+$('p').after('text')     после <p>
+$('p').before('text')    перед <p>
+$('').clone()            клонирование
+$('').remove()           удалить
+$('').detach()           вырезать
+$('').replaceWith(' ... ')  замена
+
+
